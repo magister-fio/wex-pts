@@ -48,21 +48,6 @@ The exchange rate must:
 
 Converted amounts are rounded to 2 decimal places.
 
-## Architecture
+## System Design
 
-```text
-Client / Swagger
-       |
-       v
-REST Controller
-       |
-       v
-Service Layer
-       |
-       +-------------------+
-       |                   |
-       v                   v
-JPA Repository      Treasury API Client
-       |                   |
-       v                   v
-PostgreSQL          U.S. Treasury API
+![Purchase Transaction System Design](docs/architecture/purchase-transaction-system.png)
