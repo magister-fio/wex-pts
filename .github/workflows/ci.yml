@@ -28,3 +28,6 @@ jobs:
 
       - name: Run tests
         run: ./mvnw clean test
+
+      - name: Build and test
+        run: ./mvnw clean verify
