@@ -50,4 +50,4 @@ Converted amounts are rounded to 2 decimal places.
 
 ## System Design
 
-![Purchase Transaction System Design](docs/architecture/purchase-transaction-system.png)
+![Purchase Transaction System Design](docs/system.architecture.png)
