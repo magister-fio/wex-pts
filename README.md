@@ -17,37 +17,109 @@ Spring Boot REST API for storing USD purchase transactions and retrieving them c
 - Docker
 - GitHub Actions
 
-## Requirements Implemented
-
-### Store Purchase Transaction
-
-Stores:
-
-- Unique ID
-- Description
-- Transaction date
-- Purchase amount in USD
-
-Validation:
-
-- Description maximum 50 characters
-- Valid transaction date
-- Positive purchase amount
-- Maximum 2 decimal places
-
-### Retrieve Converted Purchase
-
-Retrieves a stored purchase and converts the USD amount using the Treasury Reporting Rates of Exchange API.
-
-The exchange rate must:
-
-- Be dated on or before the purchase date
-- Be no more than 6 months older than the purchase date
-- Use the newest applicable rate
-- Return an error if no valid rate exists
-
-Converted amounts are rounded to 2 decimal places.
-
 ## System Design
 
 ![Purchase Transaction System Design](docs/system.architecture.png)
+
+## How to Set Up
+
+### Prerequisites
+
+Install:
+
+- Java 26
+- Docker
+- Git
+
+The project includes the Maven Wrapper, so Maven does not need to be installed separately.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/magister-fio/wex-pts.git
+cd wex-pts
+```
+
+### 2. Start PostgreSQL
+
+Make sure Docker is running, then execute:
+
+```bash
+docker compose up -d
+```
+
+Verify the PostgreSQL container:
+
+```bash
+docker ps
+```
+
+### 3. Run the Application
+
+On Windows:
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+On Linux/macOS:
+
+```bash
+./mvnw spring-boot:run
+```
+
+The application runs at:
+
+`http://localhost:8080`
+
+### 4. Open Swagger
+
+Open:
+
+`http://localhost:8080/swagger-ui/index.html`
+
+Swagger can be used to test both the POST and GET endpoints.
+
+### 5. Run Automated Tests
+
+Windows:
+
+```powershell
+.\mvnw.cmd clean test
+```
+
+Linux/macOS:
+
+```bash
+./mvnw clean test
+```
+
+The test suite includes:
+
+- Service unit tests
+- Controller/API tests
+- Validation tests
+- Treasury API client tests
+- PostgreSQL integration tests using Testcontainers
+- Flyway migration verification
+
+### 6. Build the Deployable JAR
+
+Windows:
+
+```powershell
+.\mvnw.cmd clean verify
+```
+
+Linux/macOS:
+
+```bash
+./mvnw clean verify
+```
+
+The generated JAR is created under:
+
+`target/`
+
+GitHub Actions also runs the build and test suite automatically on pushes and pull requests.
+
