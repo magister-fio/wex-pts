@@ -17,10 +17,6 @@ Spring Boot REST API for storing USD purchase transactions and retrieving them c
 - Docker
 - GitHub Actions
 
-## System Design
-
-![Purchase Transaction System Design](docs/system.architecture.png)
-
 ## How to Set Up
 
 ### Prerequisites
